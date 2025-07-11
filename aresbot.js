@@ -11,7 +11,7 @@ const express = require('express');
 const OWNER_ID = process.env.OWNER_ID;
 const NUKE_PASSCODE = process.env.NUKE_PASSCODE;
 const TOKEN = process.env.BOT_TOKEN;
-const COOKIES = process.env['YT_COOKIES'];
+const YTDLP_COOKIES = process.env.YTDLP_COOKIES;
 
 // === EXPRESS SERVER (RENDER-FRIENDLY PING) ===
 const app = express();
@@ -32,7 +32,11 @@ const client = new Client({
 
 // === DISTUBE SETUP ===
 const distube = new DisTube(client, {
-  plugins: [new YtDlpPlugin({ cookies: COOKIES })]
+  plugins: [
+    new YtDlpPlugin({
+      cookies: YTDLP_COOKIES
+    })
+  ]
 });
 
 distube
